@@ -1,10 +1,3 @@
-/* FONTS */
-#app .scroll-more {
-	display: block;
-	font-family: BentonSansCond-BoldItalic;
-}
-
-/* APP & CHART WRAPPER */
 #app {
 	margin: 0 auto;
 	max-width: 750px;
@@ -20,7 +13,6 @@
 /* SECTIONS */
 #app section {
 	min-height: 700px;
-	/* background: var(--green01); */
 	margin: 20px auto;
 	padding-bottom: 50px;
 }
@@ -42,15 +34,22 @@
 }
 
 /* STAT BOXES */
-.summary-box {
-	display: flex;
-	justify-content: space-around;
+#app .summary-box {
+	/* display: flex;
+	justify-content: space-around; */
 	margin-bottom: 10px;
 	text-align: center;
 }
-.summary-box .stat-box {
+#app .summary-box .timestamp {
+	color: #6D6E70;
+	font-family: 'BentonSansCond-RegItalic', italic;
+	font-size: 0.9rem;
+	margin-top: 7px;
+}
+#app .summary-box .stat-box {
 	display: flex;
 	gap: 2%;
+	justify-content: space-between;
 }
 
 #app .stat-box .big-num {

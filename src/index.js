@@ -35,19 +35,23 @@ function setupBigNums(data) {
 	console.log(data);
 	const main = document.getElementById('main-big-num');
 	const drug = document.getElementById('drugs-big-num');
+	const timestamp = document.createElement('p');
 	const mainDiv = document.createElement('div');
 	const drugDiv = document.createElement('div');
 	mainDiv.className = 'stat-box';
 	drugDiv.className = 'stat-box';
+	timestamp.className = 'timestamp';
 
 	// build main big num section
 	const new_deaths = data.filter(array => array.includes('deaths_new'));
 	const total_deaths = data.filter(array => array.includes('deaths_total'));
 	const daily_deaths = data.filter(array => array.includes('deaths_daily'));
+	const last_update = data.filter(array => array.includes('last_update'));
+
 	mainDiv.innerHTML = `
 		<div class="stat">
 			<p class="big-num">${new_deaths[0][1]}</p>
-			<p class="label">New deaths since last month</p>
+			<p class="label">New deaths since last update</p>
 		</div>
 		<div class="stat">
 			<p class="big-num">${numberWithCommas(total_deaths[0][1])}</p>
@@ -57,8 +61,10 @@ function setupBigNums(data) {
 			<p class="big-num">${daily_deaths[0][1]}</p>
 			<p class="label">Average deaths per day</p>
 		</div>
-	`;	 
+	`;
+	timestamp.innerHTML = `Last update: ${last_update[0][1]}`;
 	main.appendChild(mainDiv);
+	main.appendChild(timestamp);
 
 	// build drugs big num section
 	const fenty_deaths = data.filter(array => array.includes('deaths_fentanyl'));
