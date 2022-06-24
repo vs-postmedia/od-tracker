@@ -116,10 +116,12 @@ function setupBigNums(data) {
   console.log(data);
   var main = document.getElementById('main-big-num');
   var drug = document.getElementById('drugs-big-num');
+  var timestamp = document.createElement('p');
   var mainDiv = document.createElement('div');
   var drugDiv = document.createElement('div');
   mainDiv.className = 'stat-box';
-  drugDiv.className = 'stat-box'; // build main big num section
+  drugDiv.className = 'stat-box';
+  timestamp.className = 'timestamp'; // build main big num section
 
   var new_deaths = data.filter(function (array) {
     return array.includes('deaths_new');
@@ -130,8 +132,13 @@ function setupBigNums(data) {
   var daily_deaths = data.filter(function (array) {
     return array.includes('deaths_daily');
   });
-  mainDiv.innerHTML = "\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">".concat(new_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">New deaths since last month</p>\n\t\t</div>\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">").concat(numberWithCommas(total_deaths[0][1]), "</p>\n\t\t\t<p class=\"label\">Deaths <br/> since 2016</p>\n\t\t</div>\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">").concat(daily_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">Average deaths per day</p>\n\t\t</div>\n\t");
-  main.appendChild(mainDiv); // build drugs big num section
+  var last_update = data.filter(function (array) {
+    return array.includes('last_update');
+  });
+  mainDiv.innerHTML = "\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">".concat(new_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">New deaths since last update</p>\n\t\t</div>\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">").concat(numberWithCommas(total_deaths[0][1]), "</p>\n\t\t\t<p class=\"label\">Deaths <br/> since 2016</p>\n\t\t</div>\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">").concat(daily_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">Average deaths per day</p>\n\t\t</div>\n\t");
+  timestamp.innerHTML = "Last update: ".concat(last_update[0][1]);
+  main.appendChild(mainDiv);
+  main.appendChild(timestamp); // build drugs big num section
 
   var fenty_deaths = data.filter(function (array) {
     return array.includes('deaths_fentanyl');
