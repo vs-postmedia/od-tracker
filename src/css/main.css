@@ -37,7 +37,7 @@
 #app .summary-box {
 	/* display: flex;
 	justify-content: space-around; */
-	margin-bottom: 10px;
+	margin-bottom: 30px;
 	text-align: center;
 }
 #app .summary-box .timestamp {
