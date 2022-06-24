@@ -35,15 +35,14 @@
 
 /* STAT BOXES */
 .summary-box {
-	text-align: center;
+	display: flex;
+	justify-content: space-around;
 	margin-bottom: 10px;
+	text-align: center;
 }
 .summary-box .stat-box {
 	display: flex;
-	justify-content: space-around;
-	/* display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
-	padding: 0 4px; */
+	max-width: 400px;
 }
 
 #app .stat-box .big-num {
