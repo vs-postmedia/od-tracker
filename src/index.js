@@ -73,7 +73,6 @@ function setupBigNums(data) {
 			<p class="label">Deaths invovlving extreme fentanyl concentrations</p>
 		</div>
 	`;
-	console.log(drugDiv)
 	 
 	drug.appendChild(drugDiv);
 }
@@ -87,6 +86,11 @@ function setupMenu() {
 				let target = document.querySelector(hash);
 				let elementPosition = target.offsetTop;
 				let offsetPosition = elementPosition - headerOffset;
+
+				document.querySelectorAll('.nav-li')
+					.forEach(li => {
+						li.className = 'nav-li'
+					});
 
 				window.scrollTo({
 					top: offsetPosition,
