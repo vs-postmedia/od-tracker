@@ -34,52 +34,26 @@
 
 /* SECTIONS */
 #app section {
-	height: 700px;
+	min-height: 700px;
 	background: var(--green01);
 	margin: 20px auto;
+	padding-bottom: 50px;
+}
+
+#app section iframe {
+	margin: 7px auto;
+}
+
+#app section .half-width {
+	display: flex;
 }
 
 /* STEP ENTRIES */
-.scrollyteller .sticky {
-	color: white;
-	height: 500px;
-	text-align: center;
-	width: 100%;
-	position: -webkit-sticky;
-	position: sticky;
-	top: 0;
-}
-.scrollyteller .step-list {
-	pointer-events: none;
-	position: relative;
-}
-.scrollyteller .step {
-	margin: 100vh auto;
-	max-width: 400px;
-	text-align: center;
-}
-.scrollyteller .step:first-of-type {
-	margin-top: -25%;
-}
-.scrollyteller .step:last-of-type {
-	margin-bottom: 0;
-	padding-bottom: 100vh;
-}
-
-.scrollyteller .step > p {
-	background: rgba(255,255,255,0.8);
-	padding: 5px;
-}
-
 
 
 
 
 
 @media only screen and (min-width: 600px) {
-    /* Style adjustments for viewports that meet the condition */
-    .wrapper {
-    	/*display: flex;*/
-    	/*justify-content: space-between;*/
-    }
+
 }

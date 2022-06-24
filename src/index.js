@@ -1,4 +1,5 @@
 // LIBS
+import 'lazysizes';
 
 // CSS
 import normalize from './css/normalize.css';
@@ -15,6 +16,11 @@ const headerOffset = 50;
 const init = async () => {
 	console.log('init!')
 
+	setupMenu();
+
+};
+
+function setupMenu() {
 	document.querySelectorAll('.nav-li a[href^="#"')
 		.forEach(trigger => {
 			trigger.onclick = function(e) {
@@ -30,6 +36,6 @@ const init = async () => {
 				});
 			}
 		});
-};
+}
 
 init();
