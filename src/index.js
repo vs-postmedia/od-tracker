@@ -95,6 +95,7 @@ function setupMenu() {
 				let parent = this.parentNode;
 				parent.className = 'nav-li active-nav'
 
+				// scroll page
 				window.scrollTo({
 					top: offsetPosition,
 					behavior: 'smooth'
