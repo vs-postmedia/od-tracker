@@ -14,7 +14,7 @@
 #nav-container ul {
     background-color: rgba(255,255,255,0.8);
     display: flex;
-    padding: 10px 250px;
+    padding: 10px;
     position: fixed;
     top: 0;
 }
@@ -34,8 +34,9 @@
 }
 #nav-container ul li a {
     color: var(--black);
-    font-family: BentonSansCond-Regular, sans-serif;
     text-decoration: none;
+    font-family: BentonSansCond-Regular, sans-serif;
+    font-size: 1.25rem;
 }
 #nav-container ul li.active-nav a {
     font-family: BentonSansCond-Bold, sans-serif;
