@@ -87,10 +87,13 @@ function setupMenu() {
 				let elementPosition = target.offsetTop;
 				let offsetPosition = elementPosition - headerOffset;
 
+				// reset highlight
 				document.querySelectorAll('.nav-li')
 					.forEach(li => {
 						li.className = 'nav-li'
 					});
+				let parent = this.parentNode;
+				parent.className = 'nav-li active-nav'
 
 				window.scrollTo({
 					top: offsetPosition,
