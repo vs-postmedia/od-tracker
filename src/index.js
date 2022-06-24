@@ -1,6 +1,4 @@
 // LIBS
-import 'intersection-observer';
-import scrollama from 'scrollama';
 
 // CSS
 import normalize from './css/normalize.css';
@@ -8,30 +6,30 @@ import postmedia from './css/postmedia.css';
 import colours from './css/colors.css';
 import fonts from './css/fonts.css';
 import css from './css/main.css';
+import nav from './css/nav.css';
 
+// VARS
+const headerOffset = 50;
 
 // JS
 const init = async () => {
-	// instantiate the scrollama
-	const scroller = scrollama();
-	const iframe = document.querySelector('.scrollyteller .chart > iframe');
+	console.log('init!')
 
-	// setup the instance, pass callback functions
-	scroller
-		.setup({
-			offset: 0.75,
-			step: '.step',
-		})
-		.onStepEnter(resp => {
-			// { element, index, direction }
-			iframe.src = iframe.src.replace(/#slide-.*/, '') + '#slide-' + resp.index;
-		})
-		.onStepExit(resp => {
-			// { element, index, direction }
+	document.querySelectorAll('.nav-li a[href^="#"')
+		.forEach(trigger => {
+			trigger.onclick = function(e) {
+				e.preventDefault();
+				let hash = this.getAttribute('href');
+				let target = document.querySelector(hash);
+				let elementPosition = target.offsetTop;
+				let offsetPosition = elementPosition - headerOffset;
+
+				window.scrollTo({
+					top: offsetPosition,
+					behavior: 'smooth'
+				});
+			}
 		});
-
-	// setup resize event
-	window.addEventListener("resize", scroller.resize);
 };
 
 init();

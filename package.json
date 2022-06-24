@@ -1,6 +1,6 @@
 {
-  "name": "flourish-scrolly-template",
-  "homepage": "https://vs-postmedia.github.io/flourish-scrolly-template/",
+  "name": "od-tracker",
+  "homepage": "https://vs-postmedia.github.io/od-tracker/",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,9 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/runtime": "^7.10.2",
-    "intersection-observer": "^0.11.0",
-    "scrollama": "^2.2.1"
+    "@babel/runtime": "^7.10.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
