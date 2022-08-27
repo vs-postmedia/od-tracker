@@ -43,7 +43,7 @@
 	margin-bottom: 30px;
 	text-align: center;
 }
-#app .timestamp > p {
+#app .timestamp {
 	color: #6D6E70;
 	font-family: 'BentonSansCond-RegItalic', italic;
 	font-size: 0.9rem;
