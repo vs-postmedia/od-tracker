@@ -16,6 +16,9 @@
 	margin: 20px auto;
 	padding-bottom: 50px;
 }
+#app #main {
+	margin-top: 0;
+}
 #app section h2 {
 	font-size: 2rem;
 	margin-bottom: 20px;
@@ -40,7 +43,7 @@
 	margin-bottom: 30px;
 	text-align: center;
 }
-#app .summary-box .timestamp {
+#app .timestamp > p {
 	color: #6D6E70;
 	font-family: 'BentonSansCond-RegItalic', italic;
 	font-size: 0.9rem;
@@ -50,6 +53,10 @@
 	display: flex;
 	gap: 2%;
 	justify-content: space-between;
+}
+#app #drugs .summary-box .stat-box {
+	margin: 0 auto;
+	max-width: 500px;
 }
 
 #app .stat-box .big-num {
@@ -66,6 +73,7 @@
 	font-size: 0.95rem;
 	line-height: 1.25rem;
 	margin: 0;
+	max-width: 250px;
 	padding-bottom: 5px;
 	text-transform: uppercase;
 }
@@ -81,14 +89,17 @@
 		font-size: 2.1rem;
 		margin-bottom: 0;
 	}
-	#app #main .copy,
-	#app #drugs .copy {
-		margin: 30px auto;
-		text-align: center;
-	}
 	#app section .copy {
 		margin: 10px 0 20px 0;
+		max-width: 600px;
 	}
+	#app #main .copy,
+	#app #drugs .copy {
+	/* #app .copy { */
+		margin: 20px auto;
+		text-align: center;
+	}
+
 	#app .summary-box {
 		margin: 30px 0;
 	}
@@ -101,5 +112,6 @@
 	}
 	#app .stat-box .label {
 		font-size: 0.95rem;
+		max-width: 200px;
 	}
 }
