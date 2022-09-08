@@ -111,7 +111,6 @@ var init = /*#__PURE__*/function () {
               download: true,
               header: false,
               complete: function complete(results) {
-                console.log(results);
                 setupBigNums(results.data);
               }
             });
@@ -152,25 +151,20 @@ function setupBigNums(data) {
   var last_update = data.filter(function (array) {
     return array.includes('last_update');
   });
-  console.log(last_update);
   mainDiv.innerHTML = "\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">".concat(new_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">New deaths in ").concat(last_update[0][1].split(' ')[0], "</p>\n\t\t</div>\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">").concat(numberWithCommas(total_deaths[0][1]), "</p>\n\t\t\t<p class=\"label\">Deaths since 2016</p>\n\t\t</div>\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">").concat(daily_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">Deaths per day (average)</p>\n\t\t</div>\n\t");
   timestamp.innerHTML = "As of ".concat(last_update[0][1]);
   main.appendChild(mainDiv);
   main.appendChild(timestamp); // build drugs big num section
-  // const fenty_deaths = data.filter(array => array.includes('deaths_fentanyl'));
-  // const benzo_deaths = data.filter(array => array.includes('deaths_benzo'));
-  // drugDiv.innerHTML = `
-  // 	<div class="stat">
-  // 		<p class="big-num">${benzo_deaths[0][1]}</p>
-  // 		<p class="label">Deaths involving benzodiazepines</p>
-  // 	</div>
-  // 	<div class="stat">
-  // 		<p class="big-num">${fenty_deaths[0][1]}</p>
-  // 		<p class="label">Deaths invovlving extreme fentanyl concentrations</p>
-  // 	</div>
-  // `;
-  // drug.appendChild(drugDiv);
-  // drug.appendChild(timestamp);
+
+  var fenty_deaths = data.filter(function (array) {
+    return array.includes('deaths_fentanyl');
+  });
+  var benzo_deaths = data.filter(function (array) {
+    return array.includes('deaths_benzo');
+  });
+  drugDiv.innerHTML = "\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">".concat(benzo_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">Deaths involving benzodiazepines</p>\n\t\t</div>\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">").concat(fenty_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">Deaths invovlving extreme fentanyl concentrations</p>\n\t\t</div>\n\t");
+  drug.appendChild(drugDiv);
+  drug.appendChild(timestamp);
 }
 
 function setupMenu() {
