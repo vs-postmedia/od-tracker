@@ -16,8 +16,6 @@ const bignumURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSoEwt95_sCck
 
 // JS
 const init = async () => {
-	console.log('init!')
-
 	// nav menu
 	setupMenu();
 
@@ -32,7 +30,6 @@ const init = async () => {
 };
 
 function setupBigNums(data) {
-	console.log(data);
 	const main = document.getElementById('main-big-num');
 	const drug = document.getElementById('drugs-big-num');
 	const timestamp = document.createElement('p');
@@ -47,8 +44,6 @@ function setupBigNums(data) {
 	const total_deaths = data.filter(array => array.includes('deaths_total'));
 	const daily_deaths = data.filter(array => array.includes('deaths_daily'));
 	const last_update = data.filter(array => array.includes('last_update'));
-
-	console.log(last_update)
 
 	mainDiv.innerHTML = `
 		<div class="stat">
@@ -68,8 +63,6 @@ function setupBigNums(data) {
 	main.appendChild(mainDiv);
 	main.appendChild(timestamp);
 
-	console.log(timestamp)
-
 	// build drugs big num section
 	const fenty_deaths = data.filter(array => array.includes('deaths_fentanyl'));
 	const benzo_deaths = data.filter(array => array.includes('deaths_benzo'));
@@ -80,7 +73,7 @@ function setupBigNums(data) {
 		</div>
 		<div class="stat">
 			<p class="big-num">${fenty_deaths[0][1]}</p>
-			<p class="label">Deaths invovlving extreme fentanyl concentrations</p>
+			<p class="label">Deaths involving extreme fentanyl concentrations</p>
 		</div>
 	`;
 	 
