@@ -129,15 +129,23 @@ var init = /*#__PURE__*/function () {
 }();
 
 function setupBigNums(data) {
-  console.log(data);
   var main = document.getElementById('main-big-num');
-  var drug = document.getElementById('drugs-big-num');
-  var timestamp = document.createElement('p');
+  var drug = document.getElementById('drugs-big-num'); // timestamp
+
+  var last_update = data.filter(function (array) {
+    return array.includes('last_update');
+  });
+  var ts = setupTimestamp(last_update[0][1]); // build main big num section
+
+  setupBigNum(data, main, ts, last_update); // build drugs big num section
+  // HAVE TO FIGURE OUT WHERE TO GET THESE FIGS FROM
+  // setupDrugsBigNum(data, drug, ts);
+}
+
+function setupBigNum(data, main, timestamp, last_update) {
+  // setup wrapper div
   var mainDiv = document.createElement('div');
-  var drugDiv = document.createElement('div');
-  mainDiv.className = 'stat-box';
-  drugDiv.className = 'stat-box';
-  timestamp.className = 'timestamp'; // build main big num section
+  mainDiv.className = 'stat-box'; // data
 
   var new_deaths = data.filter(function (array) {
     return array.includes('deaths_new');
@@ -147,22 +155,25 @@ function setupBigNums(data) {
   });
   var daily_deaths = data.filter(function (array) {
     return array.includes('deaths_daily');
-  });
-  var last_update = data.filter(function (array) {
-    return array.includes('last_update');
-  });
-  mainDiv.innerHTML = "\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">".concat(new_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">New deaths in ").concat(last_update[0][1].split(' ')[0], "</p>\n\t\t</div>\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">").concat(numberWithCommas(total_deaths[0][1]), "</p>\n\t\t\t<p class=\"label\">Deaths since 2016</p>\n\t\t</div>\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">").concat(daily_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">Deaths per day (average)</p>\n\t\t</div>\n\t");
-  timestamp.innerHTML = "As of ".concat(last_update[0][1]);
-  main.appendChild(mainDiv);
-  main.appendChild(timestamp); // build drugs big num section
+  }); // template
 
+  mainDiv.innerHTML = "\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">".concat(new_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">New deaths in ").concat(last_update[0][1].split(' ')[0], "</p>\n\t\t</div>\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">").concat(numberWithCommas(total_deaths[0][1]), "</p>\n\t\t\t<p class=\"label\">Deaths since 2016</p>\n\t\t</div>\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">").concat(daily_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">Deaths per day (average)</p>\n\t\t</div>\n\t"); // update the DOM
+
+  main.appendChild(mainDiv);
+  main.appendChild(timestamp);
+}
+
+function setupDrugsBigNum(data, drug, timestamp) {
+  // setup wrapper div
+  var drugDiv = document.createElement('div');
+  drugDiv.className = 'stat-box';
   var fenty_deaths = data.filter(function (array) {
     return array.includes('deaths_fentanyl');
   });
   var benzo_deaths = data.filter(function (array) {
     return array.includes('deaths_benzo');
   });
-  drugDiv.innerHTML = "\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">".concat(benzo_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">Deaths involving benzodiazepines</p>\n\t\t</div>\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">").concat(fenty_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">Deaths invovlving extreme fentanyl concentrations</p>\n\t\t</div>\n\t");
+  drugDiv.innerHTML = "\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">".concat(benzo_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">Deaths involving benzodiazepines</p>\n\t\t</div>\n\t\t<div class=\"stat\">\n\t\t\t<p class=\"big-num\">").concat(fenty_deaths[0][1], "</p>\n\t\t\t<p class=\"label\">Deaths involving extreme fentanyl concentrations</p>\n\t\t</div>\n\t");
   drug.appendChild(drugDiv);
   drug.appendChild(timestamp);
 }
@@ -188,6 +199,13 @@ function setupMenu() {
       });
     };
   });
+}
+
+function setupTimestamp(last_update) {
+  var timestamp = document.createElement('p');
+  timestamp.className = 'timestamp';
+  timestamp.innerHTML = "As of ".concat(last_update);
+  return timestamp;
 }
 
 function numberWithCommas(x) {
