@@ -32,27 +32,30 @@ const init = async () => {
 function setupBigNums(data) {
 	const main = document.getElementById('main-big-num');
 	const drug = document.getElementById('drugs-big-num');
-	const timestamp = document.createElement('p');
-	const mainDiv = document.createElement('div');
-	const drugDiv = document.createElement('div');
-	mainDiv.className = 'stat-box';
-	drugDiv.className = 'stat-box';
-	timestamp.className = 'timestamp';
+	
+	// timestamp
+	const last_update = data.filter(array => array.includes('last_update'));
+	const ts = setupTimestamp(last_update[0][1]);
 
 	// build main big num section
-	setupBigNum(data, main, mainDiv, timestamp);
+	setupBigNum(data, main, ts, last_update);
 
 	// build drugs big num section
 	// HAVE TO FIGURE OUT WHERE TO GET THESE FIGS FROM
-	// setupDrugsBigNum(data, drug, drugDiv);
+	// setupDrugsBigNum(data, drug, ts);
 }
 
-function setupBigNum(data, main, mainDiv, timestamp) {
+function setupBigNum(data, main, timestamp, last_update) {
+	// setup wrapper div
+	const mainDiv = document.createElement('div');
+	mainDiv.className = 'stat-box';
+
+	// data
 	const new_deaths = data.filter(array => array.includes('deaths_new'));
 	const total_deaths = data.filter(array => array.includes('deaths_total'));
 	const daily_deaths = data.filter(array => array.includes('deaths_daily'));
-	const last_update = data.filter(array => array.includes('last_update'));
-
+	
+	// template
 	mainDiv.innerHTML = `
 		<div class="stat">
 			<p class="big-num">${new_deaths[0][1]}</p>
@@ -67,12 +70,16 @@ function setupBigNum(data, main, mainDiv, timestamp) {
 			<p class="label">Deaths per day (average)</p>
 		</div>
 	`;
-	timestamp.innerHTML = `As of ${last_update[0][1]}`;
+	// update the DOM
 	main.appendChild(mainDiv);
 	main.appendChild(timestamp);
 }
 
-function setupDrugsBigNum(data, drug, drugDiv) {
+function setupDrugsBigNum(data, drug, timestamp) {
+	// setup wrapper div
+	const drugDiv = document.createElement('div');
+	drugDiv.className = 'stat-box';
+
 	const fenty_deaths = data.filter(array => array.includes('deaths_fentanyl'));
 	const benzo_deaths = data.filter(array => array.includes('deaths_benzo'));
 	drugDiv.innerHTML = `
@@ -115,6 +122,14 @@ function setupMenu() {
 				});
 			}
 		});
+}
+
+function setupTimestamp(last_update) {
+	const timestamp = document.createElement('p');
+	timestamp.className = 'timestamp';
+	timestamp.innerHTML = `As of ${last_update}`;
+
+	return timestamp;
 }
 
 function numberWithCommas(x) {
