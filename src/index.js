@@ -40,6 +40,14 @@ function setupBigNums(data) {
 	timestamp.className = 'timestamp';
 
 	// build main big num section
+	setupBigNum(data, main, mainDiv, timestamp);
+
+	// build drugs big num section
+	// HAVE TO FIGURE OUT WHERE TO GET THESE FIGS FROM
+	// setupDrugsBigNum(data, drug, drugDiv);
+}
+
+function setupBigNum(data, main, mainDiv, timestamp) {
 	const new_deaths = data.filter(array => array.includes('deaths_new'));
 	const total_deaths = data.filter(array => array.includes('deaths_total'));
 	const daily_deaths = data.filter(array => array.includes('deaths_daily'));
@@ -62,8 +70,9 @@ function setupBigNums(data) {
 	timestamp.innerHTML = `As of ${last_update[0][1]}`;
 	main.appendChild(mainDiv);
 	main.appendChild(timestamp);
+}
 
-	// build drugs big num section
+function setupDrugsBigNum(data, drug, drugDiv) {
 	const fenty_deaths = data.filter(array => array.includes('deaths_fentanyl'));
 	const benzo_deaths = data.filter(array => array.includes('deaths_benzo'));
 	drugDiv.innerHTML = `
@@ -76,7 +85,7 @@ function setupBigNums(data) {
 			<p class="label">Deaths involving extreme fentanyl concentrations</p>
 		</div>
 	`;
-	 
+	
 	drug.appendChild(drugDiv);
 	drug.appendChild(timestamp);
 }
