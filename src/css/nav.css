@@ -1,12 +1,14 @@
 #nav-bar {
     align-items: center;
     background-color: rgba(255,255,255,0.8);
+    min-height: 50px;
 	position: relative;
 }
 
 #nav-container {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 50px;
 }
 
 #nav-container ul {
