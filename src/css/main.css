@@ -40,7 +40,7 @@
 #app .summary-box {
 	/* display: flex;
 	justify-content: space-around; */
-	margin: 100px auto 30px auto;
+	margin: 30px auto;
 	padding-top: 10px;
 	text-align: center;
 	width: 95%;
@@ -53,7 +53,7 @@
 }
 #app .summary-box .stat-box {
 	display: flex;
-	gap: 2%;
+	gap: 3%;
 	justify-content: space-between;
 }
 #app #drugs .summary-box .stat-box {
