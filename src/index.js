@@ -12,7 +12,7 @@ import nav from './css/nav.css';
 
 // VARS
 const headerOffset = 50;
-const bignumURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSoEwt95_sCck6DtZAZIA1SLflANuwvGgQLtQEIYO0x7eOa1pQ-yKQZO8W-FdFDKx3abnITsxcqEpeD/pub?gid=440911543&single=true&output=csv';
+const bignumURL = 'https://raw.githubusercontent.com/vs-postmedia/bccdc-od-deaths-scraper/main/data/topline-numbers.csv';
 
 // JS
 const init = async () => {
