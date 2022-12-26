@@ -96,7 +96,7 @@ __webpack_require__.r(__webpack_exports__);
  // VARS
 
 var headerOffset = 50;
-var bignumURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSoEwt95_sCck6DtZAZIA1SLflANuwvGgQLtQEIYO0x7eOa1pQ-yKQZO8W-FdFDKx3abnITsxcqEpeD/pub?gid=440911543&single=true&output=csv'; // JS
+var bignumURL = 'https://raw.githubusercontent.com/vs-postmedia/bccdc-od-deaths-scraper/main/data/topline-numbers.csv'; // JS
 
 var init = /*#__PURE__*/function () {
   var _ref = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_13___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_11___default.a.mark(function _callee() {
