@@ -12,13 +12,33 @@ import nav from './css/nav.css';
 
 // VARS
 const headerOffset = 50;
+const sections = ['main', 'map', 'drugs', 'demo', 'footer'];
 const bignumURL = 'https://raw.githubusercontent.com/vs-postmedia/bccdc-od-deaths-scraper/main/data/topline-numbers.csv';
 
 // JS
 const init = async () => {
-	// nav menu
-	setupMenu();
+	// get URL params
+	const selectedSection = getUrlParams();
 
+	if (sections.includes(selectedSection)) {
+		sections.forEach(d => {
+			if (d !== selectedSection) {
+				const elem = document.getElementById(d);
+				elem.parentNode.removeChild(elem);
+			}
+			if (d == 'main') {
+				getToplineNumbers();
+			}
+		});
+	} else {
+		// nav menu
+		setupMenu();
+
+		getToplineNumbers();		
+	}
+};
+
+function getToplineNumbers() {
 	// fetch data & update big numbers section
 	Papa.parse(bignumURL, {
 		download: true,
@@ -27,7 +47,13 @@ const init = async () => {
 			setupBigNums(results.data);
 		}
 	});
-};
+}
+
+function getUrlParams() {
+	// accepted params are: main, map, drugs, demo
+	const urlParams = new URLSearchParams(window.location.search);
+	return urlParams.get('section');
+}
 
 function setupBigNums(data) {
 	const main = document.getElementById('main-big-num');
@@ -98,6 +124,29 @@ function setupDrugsBigNum(data, drug, timestamp) {
 }
 
 function setupMenu() {
+	const navbar = document.createElement('nav');
+	// template
+	navbar.innerHTML = `
+		<div id="nav-container">
+		<ul>
+			<li class="nav-li active-nav">
+				<a href="#main">Main</a>
+			</li>
+			<li class="nav-li">
+				<a href="#map">Map</a>
+			</li>
+			<li class="nav-li">
+				<a href="#drugs">Drugs</a>
+			</li>
+			<li class="nav-li">
+				<a href="#demo">Who’s dying</a>
+			</li>
+		</ul>
+	</div>
+	`;
+	// update the DOM
+	main.appendChild(navbar);
+
 	document.querySelectorAll('.nav-li a[href^="#"')
 		.forEach(trigger => {
 			trigger.onclick = function(e) {
