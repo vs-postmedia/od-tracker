@@ -34,6 +34,7 @@ const init = async () => {
 		// nav menu
 		setupMenu();
 
+		// topline bignums
 		getToplineNumbers();		
 	}
 };
